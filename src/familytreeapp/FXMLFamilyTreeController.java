@@ -5,31 +5,48 @@
  */
 package familytreeapp;
 
+import daBandit.com.FamilyMember;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
 
 /**
  *
  * @author angel
  */
 public class FXMLFamilyTreeController implements Initializable {
+    private FamilyMember angel = new FamilyMember();
+    private TreeItem<FamilyMember> root;
+    
     
     @FXML
-    private Label label;
+    private TreeView<FamilyMember> familyTreeView;
     
-    @FXML
     private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+        
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        
+        buildTree();
+        
+        
+        
+        
+    }   
+    
+    public void buildTree(){
+        angel.setName("Angel");
+        TreeItem<FamilyMember> angelTree = new TreeItem<>();
+        root = new TreeItem<FamilyMember>(angel);
+        
+        familyTreeView.setRoot(root);
+        
+    }
     
 }

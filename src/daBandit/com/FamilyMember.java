@@ -18,7 +18,7 @@ import javafx.collections.ObservableList;
  * @author angel
  */
 public class FamilyMember {
-    private final StringProperty name = new SimpleStringProperty(this, "name", "");
+    public final StringProperty name = new SimpleStringProperty(this, "name", "");
     private final StringProperty spouse = new SimpleStringProperty(this, "spouse", "");
     private final LongProperty age = new SimpleLongProperty(this, "age", 0);
     private final ListProperty<FamilyMember> children = new SimpleListProperty<>();
@@ -102,6 +102,10 @@ public class FamilyMember {
 
     public StringProperty nameProperty() {
         return name;
+    }
+    
+    public String toString(){
+        return this.getName();
     }
     /*
     String name;
