@@ -18,13 +18,33 @@ import javafx.collections.ObservableList;
  * @author angel
  */
 public class FamilyMember {
-    public final StringProperty name = new SimpleStringProperty(this, "name", "");
+    public  final StringProperty name = new SimpleStringProperty(this, "name", "");
     private final StringProperty spouse = new SimpleStringProperty(this, "spouse", "");
-    private final LongProperty age = new SimpleLongProperty(this, "age", 0);
+    private final StringProperty age = new SimpleStringProperty(this, "age", "");
     private final ListProperty<FamilyMember> children = new SimpleListProperty<>();
     private final StringProperty nationality = new SimpleStringProperty(this, "nationality", "");
     private final StringProperty residence = new SimpleStringProperty(this, "residence", "");
+    private final StringProperty parent = new SimpleStringProperty(this,"parent", "");
 
+    public FamilyMember(String name, String spouse, String age) {
+        this.setName(name);
+        this.setSpouse(spouse);
+        this.setAge(age);
+        
+    }
+
+    public void setParent(String p){
+        parent.set(p);
+    }
+    
+    public String getParent(){
+        return parent.get();
+    }
+    public StringProperty parentProperty(){
+        return parent;
+    }
+    
+    
     public String getResidence() {
         return residence.get();
     }
@@ -66,15 +86,15 @@ public class FamilyMember {
    
     
 
-    public long getAge() {
+    public String getAge() {
         return age.get();
     }
 
-    public void setAge(long value) {
+    public void setAge(String value) {
         age.set(value);
     }
 
-    public LongProperty ageProperty() {
+    public StringProperty ageProperty() {
         return age;
     }
     

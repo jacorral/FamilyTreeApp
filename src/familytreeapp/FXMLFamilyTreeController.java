@@ -19,7 +19,7 @@ import javafx.scene.control.TreeView;
  * @author angel
  */
 public class FXMLFamilyTreeController implements Initializable {
-    private FamilyMember angel = new FamilyMember();
+    private FamilyMember angel;
     private TreeItem<FamilyMember> root;
     
     
@@ -41,7 +41,7 @@ public class FXMLFamilyTreeController implements Initializable {
     }   
     
     public void buildTree(){
-        angel.setName("Angel");
+        FamilyMember angel = new FamilyMember("Angel Corral","none", "43");
         TreeItem<FamilyMember> angelTree = new TreeItem<>();
         root = new TreeItem<FamilyMember>(angel);
         
