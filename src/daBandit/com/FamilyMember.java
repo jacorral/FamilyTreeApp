@@ -19,7 +19,7 @@ public class FamilyMember {
     public  final StringProperty name = new SimpleStringProperty(this, "name", "");
     private final StringProperty spouse = new SimpleStringProperty(this, "spouse", "");
     private final StringProperty age = new SimpleStringProperty(this, "age", "");
-    private final ListProperty<FamilyMember> children = new SimpleListProperty<>();
+    private final ListProperty<FamilyMember> children = new SimpleListProperty<>(this, "children");
     private final StringProperty nationality = new SimpleStringProperty(this, "nationality", "");
     private final StringProperty residence = new SimpleStringProperty(this, "residence", "");
     private final StringProperty parent = new SimpleStringProperty(this,"parent", "");

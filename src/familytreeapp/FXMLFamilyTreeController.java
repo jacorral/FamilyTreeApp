@@ -28,13 +28,24 @@ public class FXMLFamilyTreeController implements Initializable {
     public FamilyMember maria;
     public FamilyMember jessie;
     public FamilyMember yola;
+    public FamilyMember destiny;
+    public FamilyMember briana;
     public FamilyMember edgar;
+    public FamilyMember favian;
+    public FamilyMember bella;
+    public FamilyMember eli;
     public FamilyMember eric;
     public FamilyMember cisco;
     public FamilyMember fm;
     public ArrayList<FamilyMember> mChildren;
+    public ArrayList<FamilyMember> yChildren;
+    public ArrayList<FamilyMember> eChildren;
     public ObservableList mariaChildren;
+    public ObservableList yolaChildren;
+    public ObservableList edgarChildren;
     public ObservableList mariaChildrenTree;
+    public ObservableList yolaChildrenTree;
+    public ObservableList edgarChildrenTree;
     private TreeItem<FamilyMember> root;
     private TreeItem<FamilyMember> treeItem;
     public  Node rootIcon;
@@ -57,16 +68,54 @@ public class FXMLFamilyTreeController implements Initializable {
         
     }   
     public void buildList(){
+        //***  Root node data
         maria = new FamilyMember("Maria", "Francisco", "61");
         angel = new FamilyMember("Angel", "none", "43");
+        angel.setParent(maria.getName());
+        angel.childrenProperty().clear();
         jessie = new FamilyMember("Jessie", "none", "42");
+        jessie.setParent(maria.getName());
+        jessie.childrenProperty().clear();
         yola = new FamilyMember("Yola", "Jose", "41");
+        yola.setParent(maria.getName());
         edgar = new FamilyMember("Edgar", "Lucy", "35");
+        edgar.setParent(maria.getName());
         eric = new FamilyMember("Eric", "none", "30");
+        eric.setParent(maria.getName());
+        eric.childrenProperty().clear();
         cisco = new FamilyMember("Cisco", "none", "28");
+        cisco.setParent(maria.getName());
+        cisco.childrenProperty().clear();
+        
+        // Building edgar node
+        edgar.setSpouse("Lucy");
+        favian = new FamilyMember("Favian", "none", "9");
+        bella = new FamilyMember("Bella", "none", "5");
+        eli = new FamilyMember("Eli", "none", "2");
+        eChildren = new ArrayList<>();
+        eChildren.add(favian);
+        eChildren.add(bella);
+        eChildren.add(eli);
+        
+        edgarChildren = FXCollections.observableArrayList();
+        edgarChildren.addAll(eChildren);
+        edgar.setChildren(edgarChildren);
+        
+        // Building yola node
+        
+        yola.setSpouse("Jose");
+        destiny = new FamilyMember("Destiny", "none", "17");
+        briana = new FamilyMember("Briana", "none", "13");
+        yChildren = new ArrayList<>();
+        yChildren.add(destiny);
+        yChildren.add(briana);
+        
+        yolaChildren = FXCollections.observableArrayList();
+        yolaChildren.addAll(yChildren);
+        yola.setChildren(yolaChildren);
+        
        // public ArrayList<FamilyMember> test = new ArrayList<>();
         mChildren = new ArrayList<>();
-        
         mChildren.add(angel);
         mChildren.add(jessie);
         mChildren.add(yola);
@@ -93,23 +142,29 @@ public class FXMLFamilyTreeController implements Initializable {
         root = new TreeItem<>(maria, rootIcon);
         mariaChildrenTree = FXCollections.observableArrayList();
         System.out.println(maria.toString());
-        /*
-        TreeItem<FamilyMember> angelTree = new TreeItem<>(angel);
-        TreeItem<FamilyMember> jessieTree = new TreeItem<>(jessie);
-        TreeItem<FamilyMember> yolaTree = new TreeItem<>(yola);
-        TreeItem<FamilyMember> edgarTree = new TreeItem<>(edgar);
-        TreeItem<FamilyMember> ericTree = new TreeItem<>(eric);
-        TreeItem<FamilyMember> ciscoTree = new TreeItem<>(cisco); */
         
-        maria.getChildren().forEach(new Consumer<FamilyMember>() {
+       
+         maria.getChildren().forEach(new Consumer<FamilyMember>() {
 
             @Override
             public void accept(FamilyMember fmt) {
+                System.out.println(fmt.getName());
+                
+                if(!fmt.childrenProperty().isEmpty()){
+                treeItem = new TreeItem<>(fmt, new ImageView("resources/Leaf.png"));
+                mariaChildrenTree.add(treeItem);
+                //Add a way to get the treeItem fmt list of children and make treeItems
+                // to add to the treeView
+                
+                }else{
                 treeItem = new TreeItem<>(fmt);
                 mariaChildrenTree.add(treeItem);
+                }
             }
         });
+         
         
+       
         /*
         for(FamilyMember fm : mChildren){
             treeItem = new TreeItem<>(fm);
