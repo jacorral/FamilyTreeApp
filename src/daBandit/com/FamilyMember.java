@@ -6,9 +6,7 @@
 package daBandit.com;
 
 import javafx.beans.property.ListProperty;
-import javafx.beans.property.LongProperty;
 import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
@@ -124,6 +122,7 @@ public class FamilyMember {
         return name;
     }
     
+    @Override
     public String toString(){
         return this.getName();
     }

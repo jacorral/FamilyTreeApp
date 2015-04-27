@@ -6,9 +6,10 @@
 package familytreeapp;
 
 import daBandit.com.FamilyMember;
-import java.awt.Image;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -30,8 +31,12 @@ public class FXMLFamilyTreeController implements Initializable {
     public FamilyMember edgar;
     public FamilyMember eric;
     public FamilyMember cisco;
+    public FamilyMember fm;
+    public ArrayList<FamilyMember> mChildren;
     public ObservableList mariaChildren;
+    public ObservableList mariaChildrenTree;
     private TreeItem<FamilyMember> root;
+    private TreeItem<FamilyMember> treeItem;
     public  Node rootIcon;
     
     
@@ -59,9 +64,19 @@ public class FXMLFamilyTreeController implements Initializable {
         edgar = new FamilyMember("Edgar", "Lucy", "35");
         eric = new FamilyMember("Eric", "none", "30");
         cisco = new FamilyMember("Cisco", "none", "28");
+       // public ArrayList<FamilyMember> test = new ArrayList<>();
+        mChildren = new ArrayList<>();
+        
+        mChildren.add(angel);
+        mChildren.add(jessie);
+        mChildren.add(yola);
+        mChildren.add(edgar);
+        mChildren.add(eric);
+        mChildren.add(cisco);
         
         mariaChildren = FXCollections.observableArrayList();
-        mariaChildren.addAll(angel, jessie, yola, edgar, eric, cisco);
+        
+        mariaChildren.addAll(mChildren);
         maria.setChildren(mariaChildren);
         System.out.println(maria.toString());
         
@@ -76,11 +91,34 @@ public class FXMLFamilyTreeController implements Initializable {
          
          
         root = new TreeItem<>(maria, rootIcon);
+        mariaChildrenTree = FXCollections.observableArrayList();
         System.out.println(maria.toString());
+        /*
         TreeItem<FamilyMember> angelTree = new TreeItem<>(angel);
         TreeItem<FamilyMember> jessieTree = new TreeItem<>(jessie);
+        TreeItem<FamilyMember> yolaTree = new TreeItem<>(yola);
+        TreeItem<FamilyMember> edgarTree = new TreeItem<>(edgar);
+        TreeItem<FamilyMember> ericTree = new TreeItem<>(eric);
+        TreeItem<FamilyMember> ciscoTree = new TreeItem<>(cisco); */
+        
+        maria.getChildren().forEach(new Consumer<FamilyMember>() {
+
+            @Override
+            public void accept(FamilyMember fmt) {
+                treeItem = new TreeItem<>(fmt);
+                mariaChildrenTree.add(treeItem);
+            }
+        });
+        
+        /*
+        for(FamilyMember fm : mChildren){
+            treeItem = new TreeItem<>(fm);
+            mariaChildrenTree.add(treeItem);   
+        } */
+        
+        
         familyTreeView.setRoot(root);
-        root.getChildren().addAll(angelTree, jessieTree);
+        root.getChildren().addAll(mariaChildrenTree);
         
     }
     
