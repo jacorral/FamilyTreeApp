@@ -20,14 +20,15 @@ public class FamilyMember {
     private final StringProperty spouse = new SimpleStringProperty(this, "spouse", "");
     private final StringProperty age = new SimpleStringProperty(this, "age", "");
     private final ListProperty<FamilyMember> children = new SimpleListProperty<>(this, "children");
-    private final StringProperty nationality = new SimpleStringProperty(this, "nationality", "");
-    private final StringProperty residence = new SimpleStringProperty(this, "residence", "");
+    private final StringProperty nationality = new SimpleStringProperty(this, "nationality", "US");
+    private final StringProperty residence = new SimpleStringProperty(this, "residence", "IL");
     private final StringProperty parent = new SimpleStringProperty(this,"parent", "");
 
     public FamilyMember(String name, String spouse, String age) {
         this.setName(name);
         this.setSpouse(spouse);
         this.setAge(age);
+        
         
     }
 
@@ -125,6 +126,13 @@ public class FamilyMember {
     @Override
     public String toString(){
         return this.getName();
+    }
+    
+    public void printInfo(){
+        System.out.println("Name:  " + this.nameProperty() + "\t\tAge: " + this.ageProperty());
+        System.out.println("Spouse:  " + this.spouseProperty() + "\t\tNationality:  " + this.nationalityProperty());
+        System.out.println("Residence:  " + this.residenceProperty());
+        
     }
     /*
     String name;
