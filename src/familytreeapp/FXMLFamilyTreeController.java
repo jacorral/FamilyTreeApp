@@ -48,6 +48,7 @@ public class FXMLFamilyTreeController implements Initializable {
     public ObservableList edgarChildrenTree;
     private TreeItem<FamilyMember> root;
     private TreeItem<FamilyMember> treeItem;
+    private TreeItem<FamilyMember> sTreeItem;
     public  Node rootIcon;
     
     
@@ -141,6 +142,7 @@ public class FXMLFamilyTreeController implements Initializable {
          
         root = new TreeItem<>(maria, rootIcon);
         mariaChildrenTree = FXCollections.observableArrayList();
+        yolaChildrenTree = FXCollections.observableArrayList();
         System.out.println(maria.toString());
         
        
@@ -155,7 +157,18 @@ public class FXMLFamilyTreeController implements Initializable {
                 mariaChildrenTree.add(treeItem);
                 //Add a way to get the treeItem fmt list of children and make treeItems
                 // to add to the treeView
-                
+                fmt.getChildren().forEach(new Consumer<FamilyMember>(){
+                    
+                    @Override
+                    public void accept(FamilyMember cmt){
+                        sTreeItem = new TreeItem<>(cmt);
+                        System.out.println(cmt.getName());
+                        
+                       treeItem.getChildren().add(sTreeItem);
+                        
+                    }
+                });
+                //yola.getChildren().addAll(yolaChildrenTree);
                 }else{
                 treeItem = new TreeItem<>(fmt);
                 mariaChildrenTree.add(treeItem);
@@ -173,6 +186,7 @@ public class FXMLFamilyTreeController implements Initializable {
         
         
         familyTreeView.setRoot(root);
+        
         root.getChildren().addAll(mariaChildrenTree);
         
     }
