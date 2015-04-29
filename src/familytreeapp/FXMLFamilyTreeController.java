@@ -60,7 +60,7 @@ public class FXMLFamilyTreeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        // Image test = ;
-        rootIcon = new ImageView("resources/Leaf.png");
+        rootIcon = new ImageView("resources/Sheriff.png");
         buildList();
         buildTree();
         
@@ -99,6 +99,7 @@ public class FXMLFamilyTreeController implements Initializable {
         eChildren.add(favian);
         eChildren.add(bella);
         eChildren.add(eli);
+        //eChildren.add(new FamilyMember("test","test", "5"));
         
         edgarChildren = FXCollections.observableArrayList();
         edgarChildren.addAll(eChildren);
@@ -155,7 +156,7 @@ public class FXMLFamilyTreeController implements Initializable {
                 System.out.println(fmt.getName());
                 
                 if(!fmt.childrenProperty().isEmpty()){
-                treeItem = new TreeItem<>(fmt, new ImageView("resources/Leaf.png"));
+                treeItem = new TreeItem<>(fmt, new ImageView("resources/Sheriff.png"));
                 mariaChildrenTree.add(treeItem);
                 //Add a way to get the treeItem fmt list of children and make treeItems
                 // to add to the treeView
@@ -163,7 +164,7 @@ public class FXMLFamilyTreeController implements Initializable {
                     
                     @Override
                     public void accept(FamilyMember cmt){
-                        sTreeItem = new TreeItem<>(cmt,new ImageView("resources/Leaf.png"));
+                        sTreeItem = new TreeItem<>(cmt,new ImageView("resources/Hat_cowboy_black.png"));
                         System.out.println(cmt.getName());
                         
                        treeItem.getChildren().add(sTreeItem);
@@ -172,7 +173,7 @@ public class FXMLFamilyTreeController implements Initializable {
                 });
                 //yola.getChildren().addAll(yolaChildrenTree);
                 }else{
-                treeItem = new TreeItem<>(fmt, new ImageView("resources/Leaf.png"));
+                treeItem = new TreeItem<>(fmt, new ImageView("resources/Hat_cowboy_brown.png"));
                 mariaChildrenTree.add(treeItem);
                 }
             }
