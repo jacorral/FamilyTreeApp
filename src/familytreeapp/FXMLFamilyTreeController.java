@@ -68,6 +68,8 @@ public class FXMLFamilyTreeController implements Initializable {
         
         
     }   
+    
+    
     public void buildList(){
         //***  Root node data
         maria = new FamilyMember("Maria", "Francisco", "61");
@@ -161,7 +163,7 @@ public class FXMLFamilyTreeController implements Initializable {
                     
                     @Override
                     public void accept(FamilyMember cmt){
-                        sTreeItem = new TreeItem<>(cmt);
+                        sTreeItem = new TreeItem<>(cmt,new ImageView("resources/Leaf.png"));
                         System.out.println(cmt.getName());
                         
                        treeItem.getChildren().add(sTreeItem);
@@ -170,7 +172,7 @@ public class FXMLFamilyTreeController implements Initializable {
                 });
                 //yola.getChildren().addAll(yolaChildrenTree);
                 }else{
-                treeItem = new TreeItem<>(fmt);
+                treeItem = new TreeItem<>(fmt, new ImageView("resources/Leaf.png"));
                 mariaChildrenTree.add(treeItem);
                 }
             }
