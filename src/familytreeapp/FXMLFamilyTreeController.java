@@ -24,6 +24,7 @@ import javafx.scene.image.ImageView;
  * @author angel
  */
 public class FXMLFamilyTreeController implements Initializable {
+
     public FamilyMember angel;
     public FamilyMember maria;
     public FamilyMember jessie;
@@ -49,28 +50,23 @@ public class FXMLFamilyTreeController implements Initializable {
     private TreeItem<FamilyMember> root;
     private TreeItem<FamilyMember> treeItem;
     private TreeItem<FamilyMember> sTreeItem;
-    public  Node rootIcon;
-    
-    
+    public Node rootIcon;
+
     @FXML
     private TreeView<FamilyMember> familyTreeView;
-    
-    
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       // Image test = ;
+        // Image test = ;
         rootIcon = new ImageView("resources/Sheriff.png");
         buildList();
         buildTree();
-        
-        
-        
-        
-    }   
+
+    }
     
     
-    public void buildList(){
+
+    public void buildList() {
         //***  Root node data
         maria = new FamilyMember("Maria", "Francisco", "61");
         angel = new FamilyMember("Angel", "none", "43");
@@ -89,7 +85,7 @@ public class FXMLFamilyTreeController implements Initializable {
         cisco = new FamilyMember("Cisco", "none", "28");
         cisco.setParent(maria.getName());
         cisco.childrenProperty().clear();
-        
+
         // Building edgar node
         edgar.setSpouse("Lucy");
         favian = new FamilyMember("Favian", "none", "9");
@@ -99,99 +95,85 @@ public class FXMLFamilyTreeController implements Initializable {
         eChildren.add(favian);
         eChildren.add(bella);
         eChildren.add(eli);
-        //eChildren.add(new FamilyMember("test","test", "5"));
-        
+        eChildren.add(new FamilyMember("test","test", "5"));
+
         edgarChildren = FXCollections.observableArrayList();
         edgarChildren.addAll(eChildren);
         edgar.setChildren(edgarChildren);
-        
+
         // Building yola node
-        
         yola.setSpouse("Jose");
         destiny = new FamilyMember("Destiny", "none", "17");
         briana = new FamilyMember("Briana", "none", "13");
         yChildren = new ArrayList<>();
         yChildren.add(destiny);
         yChildren.add(briana);
-        
+
         yolaChildren = FXCollections.observableArrayList();
         yolaChildren.addAll(yChildren);
         yola.setChildren(yolaChildren);
-        
-       // public ArrayList<FamilyMember> test = new ArrayList<>();
+
+        // public ArrayList<FamilyMember> test = new ArrayList<>();
         mChildren = new ArrayList<>();
         mChildren.add(angel);
         mChildren.add(jessie);
         mChildren.add(yola);
+       // mChildren.add(new FamilyMember("test1","test", "5"));
         mChildren.add(edgar);
         mChildren.add(eric);
         mChildren.add(cisco);
-        
+        //mChildren.add(new FamilyMember("test","test", "5"));
+
         mariaChildren = FXCollections.observableArrayList();
-        
+
         mariaChildren.addAll(mChildren);
         maria.setChildren(mariaChildren);
         System.out.println(maria.toString());
-        
-       
-       
-        
-        
+
     }
-    
-    public void buildTree(){
+
+    public void buildTree() {
         //FamilyMember angel = new FamilyMember("Angel Corral","none", "43");
-         
-         
+
         root = new TreeItem<>(maria, rootIcon);
         mariaChildrenTree = FXCollections.observableArrayList();
         yolaChildrenTree = FXCollections.observableArrayList();
         System.out.println(maria.toString());
-        
-       
-         maria.getChildren().forEach(new Consumer<FamilyMember>() {
+
+        maria.getChildren().forEach(new Consumer<FamilyMember>() {
 
             @Override
             public void accept(FamilyMember fmt) {
                 System.out.println(fmt.getName());
-                
-                if(!fmt.childrenProperty().isEmpty()){
-                treeItem = new TreeItem<>(fmt, new ImageView("resources/Sheriff.png"));
-                mariaChildrenTree.add(treeItem);
+
+                if (!fmt.childrenProperty().isEmpty()) {
+                    treeItem = new TreeItem<>(fmt, new ImageView("resources/Sheriff.png"));
+                    mariaChildrenTree.add(treeItem);
                 //Add a way to get the treeItem fmt list of children and make treeItems
-                // to add to the treeView
-                fmt.getChildren().forEach(new Consumer<FamilyMember>(){
-                    
-                    @Override
-                    public void accept(FamilyMember cmt){
-                        sTreeItem = new TreeItem<>(cmt,new ImageView("resources/Hat_cowboy_black.png"));
-                        System.out.println(cmt.getName());
-                        
-                       treeItem.getChildren().add(sTreeItem);
-                        
-                    }
-                });
-                //yola.getChildren().addAll(yolaChildrenTree);
-                }else{
-                treeItem = new TreeItem<>(fmt, new ImageView("resources/Hat_cowboy_brown.png"));
-                mariaChildrenTree.add(treeItem);
+                    // to add to the treeView
+                    fmt.getChildren().forEach(new Consumer<FamilyMember>() {
+
+                        @Override
+                        public void accept(FamilyMember cmt) {
+                            sTreeItem = new TreeItem<>(cmt, new ImageView("resources/Hat_cowboy_black.png"));
+                            System.out.println(cmt.getName());
+
+                            treeItem.getChildren().add(sTreeItem);
+
+                        }
+                    });
+                    //yola.getChildren().addAll(yolaChildrenTree);
+                } else {
+                    treeItem = new TreeItem<>(fmt, new ImageView("resources/Hat_cowboy_brown.png"));
+                    mariaChildrenTree.add(treeItem);
                 }
             }
         });
-         
-        
-       
-        /*
-        for(FamilyMember fm : mChildren){
-            treeItem = new TreeItem<>(fm);
-            mariaChildrenTree.add(treeItem);   
-        } */
-        
-        
+
         familyTreeView.setRoot(root);
-        
+
         root.getChildren().addAll(mariaChildrenTree);
-        
+
     }
-    
+
 }
