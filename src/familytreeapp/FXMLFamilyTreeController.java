@@ -10,7 +10,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
-import javafx.beans.InvalidationListener;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -65,6 +64,8 @@ public class FXMLFamilyTreeController implements Initializable {
     private TextField nameTextField;
     @FXML
     private TextField stateTextField;
+    @FXML
+    private TextField nationalityTextField;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -80,7 +81,7 @@ public class FXMLFamilyTreeController implements Initializable {
         ageTextField.textProperty().bindBidirectional(fm.ageProperty());
         spouseTextField.textProperty().bindBidirectional(fm.spouseProperty());
         stateTextField.textProperty().bindBidirectional(fm.residenceProperty());
-        
+        nationalityTextField.textProperty().bindBidirectional(fm.nationalityProperty());
         
       
     }
@@ -90,6 +91,7 @@ public class FXMLFamilyTreeController implements Initializable {
     public void buildList() {
         //***  Root node data
         maria = new FamilyMember("Maria", "Francisco", "61");
+        maria.setNationality("MX");
         angel = new FamilyMember("Angel", "none", "43");
         angel.setParent(maria.getName());
         angel.childrenProperty().clear();
@@ -139,7 +141,7 @@ public class FXMLFamilyTreeController implements Initializable {
         mChildren.add(angel);
         mChildren.add(jessie);
         mChildren.add(yola);
-       // mChildren.add(new FamilyMember("test1","test", "5"));
+        //mChildren.add(new FamilyMember("test1","test", "5"));
         mChildren.add(edgar);
         mChildren.add(eric);
         mChildren.add(cisco);
@@ -154,7 +156,6 @@ public class FXMLFamilyTreeController implements Initializable {
     }
 
     public void buildTree() {
-        //FamilyMember angel = new FamilyMember("Angel Corral","none", "43");
 
         root = new TreeItem<>(maria, rootIcon);
         mariaChildrenTree = FXCollections.observableArrayList();
@@ -203,8 +204,9 @@ public class FXMLFamilyTreeController implements Initializable {
             (ov, oldValue, newValue) -> {
                 TreeItem<FamilyMember> tItem = newValue;
                 
-                FamilyMember theMember = new FamilyMember(tItem.getValue());
-                buildView(theMember);
+              // buildView( new FamilyMember(tItem.getValue()));
+               FamilyMember theMember = new FamilyMember(tItem.getValue());
+               buildView(theMember);
                 
             };
 

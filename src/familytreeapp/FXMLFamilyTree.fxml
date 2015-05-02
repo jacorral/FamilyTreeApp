@@ -18,5 +18,15 @@
       <Text layoutX="250.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age" />
       <Text layoutX="22.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spouse" />
       <Text layoutX="249.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="State" />
+      <TextField fx:id="nationalityTextField" layoutX="22.0" layoutY="181.0" />
+      <Text layoutX="25.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nationality" />
+      <HBox layoutX="26.0" layoutY="333.0">
+         <children>
+            <Button layoutX="16.0" layoutY="266.0" mnemonicParsing="false" text="Edit" />
+            <Button layoutX="81.0" layoutY="266.0" mnemonicParsing="false" text="Add" />
+            <Button layoutX="147.0" layoutY="266.0" mnemonicParsing="false" text="Delete" />
+            <Button layoutX="213.0" layoutY="266.0" mnemonicParsing="false" text="Save" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
