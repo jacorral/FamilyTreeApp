@@ -10,11 +10,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
+import javafx.beans.InvalidationListener;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.image.ImageView;
@@ -54,6 +57,14 @@ public class FXMLFamilyTreeController implements Initializable {
 
     @FXML
     private TreeView<FamilyMember> familyTreeView;
+    @FXML
+    private TextField spouseTextField;
+    @FXML
+    private TextField ageTextField;
+    @FXML
+    private TextField nameTextField;
+    @FXML
+    private TextField stateTextField;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -62,6 +73,16 @@ public class FXMLFamilyTreeController implements Initializable {
         buildList();
         buildTree();
 
+    }
+    
+    private void buildView(FamilyMember fm){
+        nameTextField.textProperty().bindBidirectional(fm.nameProperty());
+        ageTextField.textProperty().bindBidirectional(fm.ageProperty());
+        spouseTextField.textProperty().bindBidirectional(fm.spouseProperty());
+        stateTextField.textProperty().bindBidirectional(fm.residenceProperty());
+        
+        
+      
     }
     
     
@@ -173,7 +194,18 @@ public class FXMLFamilyTreeController implements Initializable {
         familyTreeView.setRoot(root);
 
         root.getChildren().addAll(mariaChildrenTree);
+        familyTreeView.getSelectionModel().selectedItemProperty()
+                .addListener(treeSelectionListener);
 
     }
+    
+    public final ChangeListener<TreeItem<FamilyMember>> treeSelectionListener =
+            (ov, oldValue, newValue) -> {
+                TreeItem<FamilyMember> tItem = newValue;
+                
+                FamilyMember theMember = new FamilyMember(tItem.getValue());
+                buildView(theMember);
+                
+            };
 
 }

@@ -28,8 +28,17 @@ public class FamilyMember {
         this.setName(name);
         this.setSpouse(spouse);
         this.setAge(age);
+    }
+    public FamilyMember(FamilyMember fm){
+        this.setName(fm.getName());
+        this.setSpouse(fm.getSpouse());
+        this.setAge(fm.getAge());
+        this.setChildren(fm.getChildren());
+        this.setNationality(fm.getNationality());
+        this.setResidence(fm.getResidence());
+        this.setParent(fm.getParent());
         
-        
+                
     }
 
     public void setParent(String p){
