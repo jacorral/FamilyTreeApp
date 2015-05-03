@@ -13,9 +13,11 @@ import java.util.function.Consumer;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
@@ -40,6 +42,7 @@ public class FXMLFamilyTreeController implements Initializable {
     public FamilyMember eric;
     public FamilyMember cisco;
     public FamilyMember fm;
+    public FamilyMember theMember;
     public ArrayList<FamilyMember> mChildren;
     public ArrayList<FamilyMember> yChildren;
     public ArrayList<FamilyMember> eChildren;
@@ -66,6 +69,14 @@ public class FXMLFamilyTreeController implements Initializable {
     private TextField stateTextField;
     @FXML
     private TextField nationalityTextField;
+    @FXML
+    private Button editButton;
+    @FXML
+    private Button addButton;
+    @FXML
+    private Button deleteButton;
+    @FXML
+    private Button saveButton;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -82,8 +93,6 @@ public class FXMLFamilyTreeController implements Initializable {
         spouseTextField.textProperty().bindBidirectional(fm.spouseProperty());
         stateTextField.textProperty().bindBidirectional(fm.residenceProperty());
         nationalityTextField.textProperty().bindBidirectional(fm.nationalityProperty());
-        
-      
     }
     
     
@@ -204,10 +213,55 @@ public class FXMLFamilyTreeController implements Initializable {
             (ov, oldValue, newValue) -> {
                 TreeItem<FamilyMember> tItem = newValue;
                 
+                if (tItem == null){
+                    theMember = new FamilyMember(maria);
+                    buildView(theMember);
+                    return;
+                }
+                
+                
               // buildView( new FamilyMember(tItem.getValue()));
-               FamilyMember theMember = new FamilyMember(tItem.getValue());
+               theMember = new FamilyMember(tItem.getValue());
                buildView(theMember);
                 
             };
+    
+    public void updateMember(){
+        
+    }
+    
+    public void deleteMember(){
+        mChildren.remove(theMember);
+        theMember.printInfo();
+        buildTree();
+    }
+    
+    public void addMember(){
+        mChildren.add(theMember);
+        buildTree();
+        
+    }
+
+    @FXML
+    private void editAction(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void addAction(ActionEvent event) {
+        addMember();
+        //buildTree();
+    }
+
+    @FXML
+    private void deleteAction(ActionEvent event) {
+        deleteMember();
+        //buildTree();
+    }
+
+    @FXML
+    private void saveAction(ActionEvent event) {
+    }
+        
 
 }

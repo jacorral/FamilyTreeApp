@@ -22,10 +22,10 @@
       <Text layoutX="25.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nationality" />
       <HBox layoutX="26.0" layoutY="333.0">
          <children>
-            <Button layoutX="16.0" layoutY="266.0" mnemonicParsing="false" text="Edit" />
-            <Button layoutX="81.0" layoutY="266.0" mnemonicParsing="false" text="Add" />
-            <Button layoutX="147.0" layoutY="266.0" mnemonicParsing="false" text="Delete" />
-            <Button layoutX="213.0" layoutY="266.0" mnemonicParsing="false" text="Save" />
+            <Button fx:id="editButton" layoutX="16.0" layoutY="266.0" mnemonicParsing="false" onAction="#editAction" text="Edit" />
+            <Button fx:id="addButton" layoutX="81.0" layoutY="266.0" mnemonicParsing="false" onAction="#addAction" text="Add" />
+            <Button fx:id="deleteButton" layoutX="147.0" layoutY="266.0" mnemonicParsing="false" onAction="#deleteAction" text="Delete" />
+            <Button fx:id="saveButton" layoutX="213.0" layoutY="266.0" mnemonicParsing="false" onAction="#saveAction" text="Save" />
          </children>
       </HBox>
    </children>

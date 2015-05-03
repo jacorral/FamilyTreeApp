@@ -138,9 +138,9 @@ public class FamilyMember {
     }
     
     public void printInfo(){
-        System.out.println("Name:  " + this.nameProperty() + "\t\tAge: " + this.ageProperty());
-        System.out.println("Spouse:  " + this.spouseProperty() + "\t\tNationality:  " + this.nationalityProperty());
-        System.out.println("Residence:  " + this.residenceProperty());
+        System.out.println("Name:  " + this.nameProperty().getValue() + "\t\tAge: " + this.ageProperty().getValue());
+        System.out.println("Spouse:  " + this.spouseProperty().getValue() + "\t\tNationality:  " + this.nationalityProperty().getValue());
+        System.out.println("Residence:  " + this.residenceProperty().getValue());
         
     }
     /*
